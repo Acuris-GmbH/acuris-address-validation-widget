@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acuris address validation widget demo</title>
+<link rel="stylesheet" href="../src/acuris-address-validation.css">
+<style>
+  :root { color-scheme: light dark; --fg: #1d2330; --muted: #5b6475; --bg: #f6f7f9; --card: #fff; --line: #d7dce5; --link: #0b5cad; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e6e9ef; --muted: #a3acbd; --bg: #0f1218; --card: #161a22; --line: #2c3340; --link: #7fb6ff; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 46rem; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 16px; margin: 24px 0 8px; }
+  a { color: var(--link); }
+  .lead, .hint { color: var(--muted); }
+  .hint { font-size: 13px; margin: 6px 0 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-top: 16px; }
+  .card > label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+  #key { width: 100%; box-sizing: border-box; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: inherit; }
+  pre { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px; overflow: auto; font-size: 12px; max-height: 18rem; white-space: pre-wrap; word-break: break-word; }
+  
+</style>
+</head>
+<body>
+<main>
+  <h1>Acuris address validation widget</h1>
+  <p class="lead">Type an address, pick a country and press Validate. Each validation is one transaction.</p>
+
+  <div class="card">
+    <label for="key">Your Acuris API key</label>
+    <input id="key" type="password" autocomplete="off" spellcheck="false" placeholder="YOUR_ACURIS_API_KEY">
+    <p class="hint">Kept in this browser tab only (sessionStorage) and sent only to the Acuris API. <a href="https://api.acuris-geo.com/register?lang=en" target="_blank" rel="noopener">Get a free API key</a> - 1,000 transactions a day, no card, never expires.</p>
+  </div>
+
+  <div class="card">
+    <p class="hint" style="margin:0 0 8px"><label><input type="checkbox" id="fielded"> Separate fields</label></p>
+    <div id="address-check"></div>
+  </div>
+
+  <h2>Events</h2>
+  <pre id="log" aria-live="polite">Paste your key above, then try the widget.</pre>
+</main>
+
+<script src="../src/acuris-core.js"></script>
+<script src="../src/acuris-address-validation.js"></script>
+<script>
+(function () {
+  var STORE = 'acuris-demo-key';  // sessionStorage only: gone when the tab closes
+  var keyEl = document.getElementById('key');
+  var logEl = document.getElementById('log');
+  var instance = null;
+  try { keyEl.value = sessionStorage.getItem(STORE) || ''; } catch (e) { /* storage blocked */ }
+  function apiKey() { return keyEl.value.trim() || 'YOUR_ACURIS_API_KEY'; }
+  function log(name, detail) {
+    logEl.textContent = name + '\n' + JSON.stringify(detail, null, 2);
+  }
+  function mountWidget() {
+    if (instance && instance.destroy) instance.destroy();
+    instance = AcurisAddressValidation.mount('#address-check', {
+      apiKey: apiKey(),
+      country: 'select',
+      fields: document.getElementById('fielded').checked ? 'fielded' : 'single'
+    });
+    document.getElementById('fielded').onchange = mountWidget;
+  }
+  keyEl.addEventListener('change', function () {
+    try { sessionStorage.setItem(STORE, keyEl.value.trim()); } catch (e) { /* storage blocked */ }
+    mountWidget();
+  });
+  ['acuris:result', 'acuris:error'].forEach(function (name) {
+    document.addEventListener(name, function (ev) { log(name, ev.detail); });
+  });
+  mountWidget();
+})();
+</script>
+</body>
+</html>

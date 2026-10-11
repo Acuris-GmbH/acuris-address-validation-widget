@@ -1,0 +1,43 @@
+/* Acuris address validation widget | MIT | Copyright (c) 2026 Acuris GmbH
+   Override the custom properties to theme it. */
+.acuris-av {
+  --acuris-fg: #1d2330; --acuris-muted: #5b6475; --acuris-border: #c9cfda; --acuris-bg: #fff;
+  --acuris-accent: #0b5cad; --acuris-ok: #1d7a3a; --acuris-warn: #9a5b00; --acuris-bad: #b42318;
+  display: grid; gap: 6px; max-width: 34rem; font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--acuris-fg);
+}
+.acuris-av label { font-weight: 600; font-size: 13px; margin-top: 4px; }
+.acuris-av input, .acuris-av select {
+  font: inherit; padding: 8px 10px; border: 1px solid var(--acuris-border); border-radius: 6px; background: var(--acuris-bg); color: inherit;
+}
+.acuris-av input:focus, .acuris-av select:focus, .acuris-av button:focus-visible { outline: 2px solid var(--acuris-accent); outline-offset: 1px; }
+.acuris-av [hidden] { display: none !important; }
+.acuris-av button[type="submit"] {
+  justify-self: start; margin-top: 6px; font: inherit; font-weight: 600; padding: 8px 16px; border: 0; border-radius: 6px;
+  background: var(--acuris-accent); color: #fff; cursor: pointer;
+}
+.acuris-result { margin-top: 8px; padding: 12px; border: 1px solid var(--acuris-border); border-radius: 8px; background: var(--acuris-bg); }
+.acuris-addr { white-space: pre-line; margin: 8px 0; font-weight: 500; }
+.acuris-tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; background: var(--acuris-muted); }
+.acuris-tag--verified, .acuris-tag--postcode { background: var(--acuris-ok); }
+.acuris-tag--corrected { background: var(--acuris-accent); }
+.acuris-tag--partial, .acuris-tag--hno { background: var(--acuris-warn); }
+.acuris-tag--nomatch { background: var(--acuris-bad); }
+.acuris-corr, .acuris-note, .acuris-coords, .acuris-attrib { margin: 4px 0; font-size: 13px; color: var(--acuris-muted); }
+.acuris-prec { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 4px; border: 1px solid currentColor; font-size: 12px; }
+.acuris-prec--point { color: var(--acuris-ok); }
+.acuris-prec--area { color: var(--acuris-warn); }
+.acuris-dym { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; font-size: 13px; }
+.acuris-chip { font: inherit; padding: 3px 10px; border: 1px solid var(--acuris-accent); border-radius: 999px; background: transparent; color: var(--acuris-accent); cursor: pointer; }
+.acuris-error { color: var(--acuris-bad); margin: 8px 0 0; }
+.acuris-busy { color: var(--acuris-muted); margin: 8px 0 0; }
+.acuris-ids { margin-top: 8px; font-size: 13px; }
+.acuris-ids dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 6px 0 0; }
+.acuris-ids dd { margin: 0; font-family: ui-monospace, monospace; }
+.acuris-welsh { float: right; font: inherit; font-size: 12px; padding: 2px 8px; border: 1px solid var(--acuris-border); border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
+.acuris-attrib { font-size: 12px; }
+.acuris-powered { margin: 8px 0 0; font-size: 12px; text-align: right; }
+.acuris-powered a { color: var(--acuris-muted); }
+@media (prefers-color-scheme: dark) {
+  .acuris-av { --acuris-fg: #e6e9ef; --acuris-muted: #a3acbd; --acuris-border: #3a4252; --acuris-bg: #161a22; --acuris-accent: #5aa2ff; --acuris-ok: #3fb168; --acuris-warn: #e0a030; --acuris-bad: #f07167; }
+  .acuris-av button[type="submit"], .acuris-tag { color: #0b1220; }
+}
