@@ -7,14 +7,14 @@
 })(typeof self !== 'undefined' ? self : this, function (C, root) {
   'use strict';
 
-  var VERSION = '0.1.0';
+  var VERSION = '0.1.1';
   var FIELDS = [['street', 'Street'], ['house_number', 'House number'], ['city', 'City'], ['postcode', 'Postcode'], ['state', 'State / region']];
   var POSTCODE_NOTE = 'The pin is the centre of the postcode - add a house number or building name to check a specific address';
   var TAGS = {
     verified: 'Verified', corrected: 'Corrected', partial: 'Partial', nomatch: 'No match',
     postcode: 'Valid postcode', hno: 'Street found, not that number'
   };
-  var ATTRIB = 'Address validation by ACURIS-geo.com';
+  var ATTRIB = 'Powered by Acuris Geo';
   var ATTRIB_URL = 'https://www.acuris-geo.com/';
 
   // Visible attribution link, on by default; opts.attribution === false removes it.
@@ -83,7 +83,7 @@
   }
 
   // Pure: response -> HTML string. opts.uk = the UK extras module (optional);
-  // opts.attribution === false hides the "Address validation by ACURIS-geo.com" link.
+  // opts.attribution === false hides the "Powered by Acuris Geo" link.
   function resultHtml(r, opts) {
     opts = opts || {};
     var uk = opts.uk;

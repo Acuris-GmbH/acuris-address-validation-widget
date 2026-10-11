@@ -25,7 +25,7 @@ test('validate: POSTs to /validate on the main host with the widget client heade
   await W.validate('Schönhauser Allee 36, 10435 Berlin', { apiKey: KEY, country: 'deu', fetch: mockFetch(200, {}, calls) });
   assert.equal(calls[0].url, 'https://api.acuris-geo.com/validate');
   assert.equal(calls[0].init.method, 'POST');
-  assert.match(calls[0].init.headers['X-Acuris-Client'], /^gh-address-validation\/0\.1\.0$/);
+  assert.match(calls[0].init.headers['X-Acuris-Client'], /^gh-address-validation\/0\.1\.1$/);
   assert.deepEqual(JSON.parse(calls[0].init.body), { input: 'Schönhauser Allee 36, 10435 Berlin', country: 'deu' });
 });
 
@@ -108,7 +108,7 @@ test('form: placeholder country, no preselection; fielded inputs', () => {
 test('render: attribution link on by default, removable, API attribution kept', () => {
   const r = { standardized: { formatted_address: '1 Main St' }, attribution: 'Data <source>' };
   const on = W.resultHtml(r);
-  assert.match(on, /<a href="https:\/\/www\.acuris-geo\.com\/" target="_blank" rel="noopener">Address validation by ACURIS-geo\.com<\/a>/);
+  assert.match(on, /<a href="https:\/\/www\.acuris-geo\.com\/" target="_blank" rel="noopener">Powered by Acuris Geo<\/a>/);
   assert.match(on, /<p class="acuris-attrib">Data &lt;source&gt;<\/p>/);
   const off = W.resultHtml(r, { attribution: false });
   assert.doesNotMatch(off, /ACURIS-geo\.com/);

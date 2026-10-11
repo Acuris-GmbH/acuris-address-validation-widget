@@ -5,7 +5,7 @@
 [![CI](https://github.com/Acuris-GmbH/acuris-address-validation-widget/actions/workflows/ci.yml/badge.svg)](https://github.com/Acuris-GmbH/acuris-address-validation-widget/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Status:** beta (0.1.0)
+**Status:** beta (0.1.1)
 
 ---
 
@@ -74,7 +74,7 @@ in `sessionStorage` for that tab only).
 | `onResult` | none | `function (response)` called with the API response. |
 | `onError` | none | `function (error)` called with `{status, code, message, resetsAt}`. |
 | `fetch` | `window.fetch` | Inject your own `fetch` (tests, instrumentation). |
-| `attribution` | `true` | Shows the link "Address validation by ACURIS-geo.com" under each result; set `false` to turn it off. |
+| `attribution` | `true` | Shows the link "Powered by Acuris Geo" under each result; set `false` to turn it off. |
 
 `mount()` returns `{ element, validate(values?), destroy() }`. Without a DOM you can call
 `AcurisAddressValidation.validate(values, { apiKey, country })`, which resolves to the API response.

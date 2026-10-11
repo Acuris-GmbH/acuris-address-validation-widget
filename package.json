@@ -1,6 +1,6 @@
 {
   "name": "acuris-address-validation-widget",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Framework-free address validation widget for any HTML form. Verifies, corrects and standardises addresses in 240+ countries via the Acuris API; returns coordinates and a precision tier. One script tag, MIT. Free API key, 1,000 transactions/day.",
   "private": false,
   "license": "MIT",
