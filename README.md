@@ -171,7 +171,7 @@ Source: <https://github.com/Acuris-GmbH/acuris-agent-context>
 
 | Repository | What it does |
 | --- | --- |
-| [acuris-address-autocomplete-widget](https://github.com/Acuris-GmbH/acuris-address-autocomplete-widget) | Address autocomplete (typeahead), 19 countries |
+| [acuris-address-autocomplete-widget](https://github.com/Acuris-GmbH/acuris-address-autocomplete-widget) | Address autocomplete (typeahead), 20 countries |
 | [acuris-geocoding-widget](https://github.com/Acuris-GmbH/acuris-geocoding-widget) | Address to latitude/longitude with a precision tier |
 | [acuris-reverse-geocoding-widget](https://github.com/Acuris-GmbH/acuris-reverse-geocoding-widget) | Coordinates to the nearest postal addresses |
 | [acuris-mcp](https://github.com/Acuris-GmbH/acuris-mcp) | MCP server: address validation and geocoding tools for AI assistants |
